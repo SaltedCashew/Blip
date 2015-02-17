@@ -1,0 +1,390 @@
+text "Starting Test 1\n" var FAIL 0 var x 1 if + x 1 else     set FAIL 1 fi if 0 set FAIL 1 else fi if ~ 22 else set FAIL 1 fi
+var y 2 if == + x 1 y else set FAIL 1 fi set y 1 if == + x 1 y set FAIL 1 else fi if < + x 1 y set FAIL 1 else fi 
+if == FAIL 0 text "Test 1 Passed!\n" else text "Test 1 Failed!\n" fi
+
+text "\nStarting Test 2\n" set FAIL 0 set x 1 if ! + x 1 else fi if ! + x 1 set FAIL 1 fi if + x 1 else set FAIL 1 fi set y 2
+if && + y ~ 1 0 set FAIL 1 else fi if && 0 + y ~ 1 set FAIL 1 else fi if && 0 + y ~ 2 set FAIL 1 else fi if && + y ~ 1 + y ~ 2 
+set FAIL 1 else fi if || + y ~ 1 0 else set FAIL 1 fi if || 0 + y ~ 1 else set FAIL 1 fi if || 0 + y ~ 2 set FAIL 1 else fi if
+|| + y ~ 1 + y ~ 2 else set FAIL 1 fi if || + y ~ 1 + y ~ 1 else set FAIL 1  fi 
+if == FAIL 0 text "Test 2 Passed!\n" else text "Test 2 Failed!\n" fi
+
+text "\nStarting Test 3\n" set FAIL 0 set y 2 if + y ~ 1 
+    if + y ~ 2 
+        set FAIL 1
+    else 
+      
+    fi
+fi
+
+
+if 1 
+    if 1
+        if 1 
+            if 1
+                if 1
+                    if 1
+                        if 1
+                            if 1
+                                if 1
+                                    if 1
+                                        if 1
+                                            if 1 
+                                                if 1
+                                                    
+                                                else fi
+                                            else fi
+                                        else fi
+                                    else fi
+                                else fi
+                            else fi
+                        else fi
+                    else fi
+                else fi
+            else fi
+        else fi
+    else fi
+else fi
+
+if 1 
+    if 1
+        if 1 
+            if 1
+                if 1
+                    if 1
+                        if 0
+                            if 1
+                                set FAIL 1
+                                if 1
+                                    set FAIL 1
+                                    if 1
+                                        set FAIL 1
+                                        if 1
+                                            set FAIL 1
+                                            if 1 
+                                                set FAIL 1
+                                                if 1
+                                                    set FAIL 1
+                                                else fi
+                                            else fi
+                                        else fi
+                                    else fi
+                                else fi
+                            else fi
+                        else 
+                            
+                        fi
+                    else 
+                        set FAIL 1
+                    fi
+                else 
+                    set FAIL 1
+                fi
+            else 
+                set FAIL 1
+            fi
+        else fi
+    else fi
+else fi
+
+if 1
+    if 1
+        if 1
+            if 0 
+            else 
+            fi
+            
+        fi
+    else 
+        set FAIL 1
+    fi
+    
+fi 
+
+if == FAIL 0 text "Test 3 Passed!\n" else text "Test 3 Failed!\n" fi
+text "\nStarting Test 4\n" set FAIL 0
+set x 1
+set y 2
+set y 1
+
+if < + x 1 y
+    set FAIL 1
+else 
+    
+fi
+
+if > + x 1 y
+   
+else 
+    set FAIL 1
+fi
+
+if > y + x 1 
+    set FAIL 1
+else 
+   
+fi
+
+if != + x 1 y
+    
+    set y + x 1
+else 
+   set FAIL 1
+fi
+
+if >= + x 1 y
+    
+else 
+    set FAIL 1
+fi
+
+if <= y + x 1 
+    
+else 
+    set FAIL 1
+fi
+
+if == FAIL 0 text "Test 4 Passed!\n" else text "Test 4 Failed!\n" fi
+text "\nStarting Test 5\n" set FAIL 0
+
+var i 0
+do < i 10
+    // output + i 1
+    set i + i 1
+od
+
+do 0 
+    set FAIL 1
+od 
+
+if == FAIL 0 text "Test 5 Passed!\n" else text "Test 5 Failed!\n" fi
+text "\nStarting Test 6\n" set FAIL 0
+
+set i 0
+var j 0
+do < i 3 
+    do < j 2
+        output * + i 1 + j 1
+        text " "
+        set j + 1 j
+    od
+    set i + 1 i
+od
+
+set i 0
+set j 0
+
+do < i 3
+    set j 0
+    do < j 2
+        output * + i 1 + j 1
+        text " "
+        set j + 1 j
+    od
+    set i + 1 i
+od
+
+set j 0
+set i 0
+do < i 4
+    if == i 3
+        set i j
+        set j + 1 j
+    fi
+    output i
+    text " "
+    set i + 1 i
+od
+text " <-----test output\n"
+text "1 2 1 2 2 4 3 6 0 1 2 0 1 2 1 2 2 3  <-----correct output\n"
+
+text "\nStarting Test 8\n" set FAIL 0
+set i 0
+do < i 40
+    do < i 30
+        do < i 20
+            do < i 10
+                do < i 5
+                    output i
+                    text " "
+                    set i + i 1
+                od 
+                output i
+                text " "
+                set i + i 2
+            od
+            output i
+            text " "
+            set i + i 4
+        od
+        output i
+        text " "
+        set i + i 1
+    od
+    output i
+    text " "
+    set i + i 2
+od
+
+text " <-----test output\n"
+text "0 1 2 3 4 5 7 9 11 15 19 23 24 25 26 27 28 29 30 32 34 36 38 <-----correct output\n"
+
+text "\nStarting Test 9\n" set FAIL 0
+defun foo params smarap
+    output 42
+nufed
+
+set x call foo args sgra
+text " "
+
+set x call foo args sgra
+text " "
+
+text " <-----test output\n"
+text "42 42 <-----correct output\n"
+
+text "\nStarting Test 10\n" set FAIL 0
+set x 5 
+set y 8
+
+defun scooby params x smarap
+    set x + x 2
+    output + x y
+nufed
+
+var not_used 0
+
+do > x 0
+    set not_used call scooby args x sgra
+    text " "
+    set x - x 1
+od
+
+text " <-----test output\n"
+text "15 14 13 12 11  <-----correct output\n"
+
+text "\nStarting Test 11\n" set FAIL 0
+defun doo params x y smarap
+    return + y x
+nufed
+
+set i 4
+set j 5
+
+do call doo args i j sgra 
+
+    if ! % call doo args i j sgra 2
+        set i - i 1
+    else 
+        set j - j 1
+    fi
+
+    output i 
+    text " "
+    output j 
+    text " "
+od
+text " <-----test output\n"
+text "4 4 3 4 3 3 2 3 2 2 1 2 1 1 0 1 0 0  <-----correct output\n"
+
+text "\nStarting Test 12\n" 
+set x 2
+
+defun brad params x smarap
+    var z 0
+    do > x 0
+        set x - x 1 
+        set z + z 1
+        if == x 2
+            return + z 1 
+        fi
+    od
+nufed
+
+output call brad args 5 sgra
+text " "
+output call brad args x sgra
+text " "
+output call brad args x sgra
+text " "
+text " <-----test output\n"
+text "4 0 0  <-----correct output\n"
+
+text "\nStarting Test 13\n" 
+defun scooba params x smarap
+    
+    defun diving params x smarap
+        set x + x 1
+        return * x 10
+    nufed
+    
+    return + x call diving args x sgra
+nufed
+
+var zed call scooba args 2 sgra
+if == zed 32 text "Test 13 passed!\n" else text "Test 13 failed!\n" fi
+
+text "\nStarting Test 14\n" 
+
+defun fact params n smarap
+    if < n 2 return 1 fi
+    return * n call fact args - n 1 sgra
+nufed
+
+set x 1
+do < x 10
+    output x
+    text "! is "
+    output call fact args x sgra
+    text \n
+    set x + x 1
+od
+
+
+
+defun hinkies params x smarap
+    return + x 1
+nufed
+
+output call hinkies args 
+                call hinkies args 
+                        call hinkies args 
+                            call hinkies args 
+                                call hinkies args 
+                                    call hinkies args 
+                                        call hinkies args
+                                            call hinkies args
+                                                call hinkies args
+                                                    call hinkies args
+                                                        call hinkies args
+                                                            call hinkies args
+                                                                call hinkies args
+                                                                    call hinkies args 0 
+                                                                    sgra
+                                                                sgra
+                                                            sgra
+                                                        sgra
+                                                    sgra
+                                                sgra
+                                            sgra    
+                                        sgra
+                                    sgra
+                                sgra
+                            sgra
+                        sgra
+                    sgra
+            sgra
+
+
+text "\nCorrect Output: \n"
+text "1! is 1 \n" 
+text "2! is 2 \n"
+text "3! is 6 \n"
+text "4! is 24 \n"
+text "5! is 120 \n"
+text "6! is 720 \n"
+text "7! is 5040 \n"
+text "8! is 40320 \n"
+text "9! is 362880 \n"
+text "14 \n"
+
+
